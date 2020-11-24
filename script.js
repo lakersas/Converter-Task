@@ -51,6 +51,24 @@ function onInputChanged() {
 
 }
 
+function onAmountChanged() {
+    const amount = UI.amountConverted.value;
+
+    if (amount == '')
+        return;
+
+    const amountForm = UI.convertToSelect.value;
+    const amountTo = UI.convertFromSelect.value;
+
+    const convertedValue = convertCurrency(amountForm, amountTo, parseFloat(amount));
+
+    UI.amountInput.value = convertedValue;
+}
+
 UI.amountInput.addEventListener('keyup', onInputChanged);
 UI.convertFromSelect.addEventListener('change', onInputChanged);
 UI.convertToSelect.addEventListener('change', onInputChanged);
+
+UI.amountConverted.addEventListener('keyup', onAmountChanged);
+UI.convertFromSelect.addEventListener('change', onAmountChanged);
+UI.convertToSelect.addEventListener('change', onAmountChanged);
